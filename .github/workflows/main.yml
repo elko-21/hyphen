@@ -25,18 +25,18 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Login to ECR
-      id: ecr
-      uses: jwalton/gh-ecr-login@v1
-      with:
-        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        region: ap-southeast-1
-    - name: build and push to ECR
-      with:
-        repo: hyphen-api-poc
-        tag: latest,${{ github.sha }}
-      run: |
-        docker build -t ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
-        docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
+      - uses: actions/checkout@v2
+      - name: Login to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-login@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ap-southeast-1
+      - name: build and push to ECR
+        with:
+          repo: hyphen-api-poc
+          tag: latest,${{ github.sha }}
+        run: |
+          docker build -t ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
+          docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
