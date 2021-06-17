@@ -38,5 +38,5 @@ jobs:
           repo: hyphen-api-poc
           tag: ${{ github.sha }}
         run: |
-          docker build -t ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
+          docker build -t ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag ./build
           docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
