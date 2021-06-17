@@ -3,7 +3,7 @@ openapi: "3.0.0"
 info:
   version: 1.0.0
   title: Swagger Petstore
-  description: | 
+  description: |
     A sample API that uses a petstore as an example to demonstrate features in
     the OpenAPI 3.0 specification
   termsOfService: http://swagger.io/terms/
@@ -78,7 +78,9 @@ paths:
                 $ref: '#/components/schemas/Error'
   /pets/{id}:
     get:
-      description: Returns a user based on a single ID, if the user does not have access to the pet
+      description: |
+        Returns a user based on a single ID, if the user does not have access
+        to the pet
       operationId: find pet by id
       parameters:
         - name: id
