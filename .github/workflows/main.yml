@@ -26,13 +26,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: docker://ghcr.io/kciter/aws-ecr-action:latest
+    - name: Login to ECR
+      id: ecr
+      uses: jwalton/gh-ecr-login@v1
       with:
-        access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-        repo: hyphen-api-poc
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         region: ap-southeast-1
-        tags: latest,${{ github.sha }}
-        create_repo: true
-        set_repo_policy: false
+    - name: build and push to ECR
+      with:
+        repo: hyphen-api-poc
+        tag: latest,${{ github.sha }}
+      run: |
+        docker build -t ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
+        docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
