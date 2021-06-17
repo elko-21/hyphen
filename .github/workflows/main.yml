@@ -36,7 +36,7 @@ jobs:
       - name: build and push to ECR
         env:
           repo: hyphen-api-poc
-          tag: latest,${{ github.sha }}
+          tag: dev-${{ github.sha }}
         run: |
           docker build -t ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
           docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.ap-southeast-1.amazonaws.com/$repo:$tag
