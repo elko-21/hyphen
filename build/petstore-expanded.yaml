@@ -126,30 +126,30 @@ paths:
 components:
   schemas:
     Pet:
-     type: object
-     properties:
-       Id:
-         type: integer
-         format: int64
-       DogName:
-         type: string
-         x-faker: name.firstName
-       DogBreed:
-         type: string
-         x-faker: animal.dog
-       Color:
-         type: string
-         x-faker: commerce.color
+      type: object
+      properties:
+        Id:
+          type: integer
+          format: int64
+        DogName:
+          type: string
+          x-faker: name.firstName
+        DogBreed:
+          type: string
+          x-faker: animal.dog
+        Color:
+          type: string
+          x-faker: commerce.color
 
     NewPet:
       type: object
       required:
-        - name  
+        - name
       properties:
         name:
           type: string
         tag:
-          type: string    
+          type: string
 
     Error:
       type: object
