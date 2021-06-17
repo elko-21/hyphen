@@ -130,12 +130,12 @@ components:
        Id:
          type: integer
          format: int64
-       CatName:
+       DogName:
          type: string
          x-faker: name.firstName
-       CatBreed:
+       DogBreed:
          type: string
-         x-faker: animal.cat
+         x-faker: animal.dog
        Color:
          type: string
          x-faker: commerce.color
